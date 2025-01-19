@@ -1,7 +1,7 @@
 const shortid=require('shortid');
 const URL=require('../models/url.js');
 
-async function handleCerateShortID(req,res){
+async function handleCreateShortID(req,res){
 
     try{
         const body=req.body;
@@ -11,6 +11,8 @@ async function handleCerateShortID(req,res){
         }
 
         const shortId=shortid();
+        console.log(shortId);
+
         await URL.create({
             shortId:shortId,
             redirectURL:body.url,
@@ -22,6 +24,7 @@ async function handleCerateShortID(req,res){
 
     catch(error)
     {
+        console.log(error);
         res.status(500).json({error:"Internal server error"});
     }
 }
@@ -68,4 +71,4 @@ async function handleShowClicks(req,res){
     }
 }
 
-module.exports={handleCerateShortID,handleRedirectURL,handleShowClicks}
+module.exports={handleCreateShortID,handleRedirectURL,handleShowClicks}

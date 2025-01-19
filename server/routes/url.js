@@ -1,8 +1,8 @@
 const express=require('express');
 const router=express.Router();
-const {handleCerateShortID,handleRedirectURL, handleShowClicks}=require('../controllers/url.js');
+const {handleCreateShortID,handleRedirectURL, handleShowClicks}=require('../controllers/url.js');
 
-router.route('/').post(handleCerateShortID);
+router.route('/').post(handleCreateShortID);
 
 router.route('/:shortId').get(handleRedirectURL);
 
