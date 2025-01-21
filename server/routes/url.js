@@ -1,9 +1,11 @@
 const express=require('express');
 const router=express.Router();
 const { body, validationResult } = require('express-validator');
-const {handleCreateShortID,handleRedirectURL, handleShowClicks}=require('../controllers/url.js');
+const {handleCreateShortID,handleRedirectURL, handleShowClicks,handleShowAllUsers}=require('../controllers/url.js');
 const {handleLogin}=require('../controllers/login.js');
-const {handleSignup}=require('../controllers/signup.js')
+const {handleSignup}=require('../controllers/signup.js');
+const {handleAdminUrls}=require('../middlewares/user.js');
+
 
 router.route('/login').post([
     body('email', "Enter a valid email").isEmail(),
@@ -14,6 +16,8 @@ router.route('/signup').post([body('name', "Name must be 4 letters long").isLeng
     body('email', "Enter a valid email").isEmail(),
     body('password', "Password must be at least 5 characters long").isLength({ min: 5 })
     ],handleSignup)
+
+router.route('/:id/urls').get(handleAdminUrls,handleShowAllUsers);
 
 router.route('/').post(handleCreateShortID);
 

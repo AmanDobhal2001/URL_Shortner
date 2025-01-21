@@ -1,6 +1,27 @@
 const shortid=require('shortid');
 const URL=require('../models/url.js');
 
+async function handleShowAllUsers(req,res){
+
+    try{
+        const user=await URL.find({});
+        
+        if(user.length==0)
+        {
+            return res.status(400).json({error:"No data found!"});
+        }
+
+        return res.status(200).json({user});
+    }
+
+    catch(error)
+    {
+        return res.status(500).json({error:"Internal server error"});
+    }
+
+
+}
+
 async function handleCreateShortID(req,res){
 
     try{
@@ -71,4 +92,4 @@ async function handleShowClicks(req,res){
     }
 }
 
-module.exports={handleCreateShortID,handleRedirectURL,handleShowClicks}
+module.exports={handleCreateShortID,handleRedirectURL,handleShowClicks,handleShowAllUsers}

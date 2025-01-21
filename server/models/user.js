@@ -8,7 +8,9 @@ const mongoose=require('mongoose');
 
         email:{type:String,require:true,unique:true},
 
-        password:{type:String,required:true}
+        password:{type:String,required:true},
+
+        roles:{type:String,required:true,default:'Normal'}
     },{timestamps:true});
 
 const User=mongoose.model("user",userSchema);
