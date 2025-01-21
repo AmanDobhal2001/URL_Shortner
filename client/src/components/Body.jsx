@@ -1,8 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 
-
-function Body() {
+function Body({setAuthToken}) {
   const [first, setFirst] = useState('http://www.example.com');
   const [url, seturl] = useState('')
 
@@ -15,6 +14,7 @@ function Body() {
     }
 
   }
+
 
   async function handleCopy(e){
 
